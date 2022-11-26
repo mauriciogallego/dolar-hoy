@@ -1,18 +1,19 @@
 /* eslint-disable filenames/match-regex */
-/**
- * Learn more about using TypeScript with React Navigation:
- * https://reactnavigation.org/docs/typescript/
- */
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams;
   Modal: undefined;
-  NotFound: undefined;
+  NotFound: NavigatorScreenParams;
 };
+
+export type NotificationStackScreenProps<
+  Screen extends keyof RootStackParamList,
+> = NativeStackScreenProps<RootStackParamList, Screen>;
 
 declare global {
   namespace ReactNavigation {
-    type RootParamList = RootStackParamList;
+    type RootParamList = NotificationStackScreenProps;
   }
 }

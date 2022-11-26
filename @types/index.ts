@@ -1,3 +1,4 @@
+/* eslint-disable filenames/match-regex */
 import { Text, View } from 'react-native';
 
 type ThemeProps = {

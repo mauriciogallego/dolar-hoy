@@ -1,3 +1,4 @@
+/* eslint-disable filenames/match-regex */
 module.exports = function (api) {
   api.cache(true);
   return {

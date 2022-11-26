@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "jest": {
     "preset": "jest-expo"
@@ -47,11 +48,20 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.8",
+    "husky": "^8.0.2",
     "jest": "^26.6.3",
     "jest-expo": "~47.0.1",
+    "lint-staged": "^13.0.4",
     "prettier": "2.8.0",
     "react-test-renderer": "18.1.0",
     "typescript": "^4.6.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js}": [
+      "prettier --write",
+      "yarn run lint --fix",
+      "bash -c tsc --noEmit"
+    ]
   },
   "private": true
 }

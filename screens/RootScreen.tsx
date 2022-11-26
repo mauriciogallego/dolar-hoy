@@ -1,22 +1,8 @@
 import { StyleSheet } from 'react-native';
+import { FC } from 'react';
 import View from '../components/view/View';
 import Text from '../components/text/Text';
-import { RootTabScreenProps } from '../types'
-
-export default function TabOneScreen({
-  navigation,
-}: RootTabScreenProps<'TabOne'>) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-    </View>
-  );
-}
+import { NotificationStackScreenProps } from '../types';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,3 +20,16 @@ const styles = StyleSheet.create({
     width: '80%',
   },
 });
+
+const RootScreen: FC<NotificationStackScreenProps<'Root'>> = () => (
+  <View style={styles.container}>
+    <Text style={styles.title}>Tab One</Text>
+    <View
+      style={styles.separator}
+      lightColor="#eee"
+      darkColor="rgba(255,255,255,0.1)"
+    />
+  </View>
+);
+
+export default RootScreen;

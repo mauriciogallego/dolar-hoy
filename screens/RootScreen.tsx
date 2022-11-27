@@ -3,6 +3,7 @@ import { FC } from 'react';
 import View from '../components/view/View';
 import Text from '../components/text/Text';
 import { NotificationStackScreenProps } from '../types';
+import usePrice from '../hooks/queries/usePrice';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,15 +22,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const RootScreen: FC<NotificationStackScreenProps<'Root'>> = () => (
-  <View style={styles.container}>
-    <Text style={styles.title}>Tab One</Text>
-    <View
-      style={styles.separator}
-      lightColor="#eee"
-      darkColor="rgba(255,255,255,0.1)"
-    />
-  </View>
-);
+const RootScreen: FC<NotificationStackScreenProps<'Root'>> = () => {
+  const { data } = usePrice();
+  console.log({ data });
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Tab One</Text>
+      <View
+        style={styles.separator}
+        lightColor="#eee"
+        darkColor="rgba(255,255,255,0.1)"
+      />
+    </View>
+  );
+};
 
 export default RootScreen;

@@ -1,14 +1,26 @@
 /* eslint-disable filenames/match-regex */
-import { Text, View } from 'react-native';
+import { Text, View, SafeAreaView } from 'react-native';
 import { Method } from 'axios';
 
-type ThemeProps = {
+export type ThemeProps = {
   lightColor?: string;
   darkColor?: string;
 };
 
 export type ViewProps = ThemeProps & View['props'];
-export type TextProps = ThemeProps & Text['props'];
+export type SafeAreaViewProps = ThemeProps & SafeAreaView['props'];
+
+type Fonts =
+  | 'black'
+  | 'bold'
+  | 'extra-bold'
+  | 'extra-light'
+  | 'light'
+  | 'medium'
+  | 'regular'
+  | 'semi-bold';
+
+export type TextProps = ThemeProps & Text['props'] & { font?: Fonts };
 
 export type Headers = {
   'Content-Type': string;

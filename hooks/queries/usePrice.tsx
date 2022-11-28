@@ -7,7 +7,7 @@ import { LoadingContext } from '../../context/Loading';
 const usePrice = () => {
   const { add, remove } = useContext(LoadingContext);
   const { data, refetch, isLoading } = useQuery(['price'], () =>
-    get('https://dolarhoy.com/img/favicons/manifest.json').then(
+    get('https://api-dolar-argentina.herokuapp.com/api/dolarblue').then(
       (response) => response.data,
     ),
   );

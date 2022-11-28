@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { Headers, Options } from '../@types/index';
 
-export const instance = axios.create();
+export const instance = axios.create({});
 
 const headers: Headers = {
   'Content-Type': 'application/json',

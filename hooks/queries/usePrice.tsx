@@ -12,9 +12,9 @@ export type Data = {
 const usePrice = () => {
   const { add, remove } = useContext(LoadingContext);
   const { data, isLoading, ...query } = useQuery<Data>(['price'], () =>
-    get(
-      ' https://www.lanacion.com.ar/pf/api/v3/content/fetch/dolarSource',
-    ).then((response) => response.data),
+    get('https://www.lanacion.com.ar/pf/api/v3/content/fetch/dolarSource').then(
+      (response) => response.data,
+    ),
   );
 
   useEffect(() => {

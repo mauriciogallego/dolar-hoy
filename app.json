@@ -7,6 +7,7 @@
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
+    "jsEngine": "hermes",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
@@ -15,10 +16,13 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.mauriciogallegoa.dolarhoy"
+      "bundleIdentifier": "com.mauriciogallegoa.dolarhoy",
+      "jsEngine": "jsc"
     },
     "android": {
       "adaptiveIcon": {
@@ -29,6 +33,11 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5ed34d2e-506c-4019-9698-4d372d8bb6b3"
+      }
     }
   }
 }

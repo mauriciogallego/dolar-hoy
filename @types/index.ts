@@ -26,7 +26,6 @@ export type Headers = {
   'Content-Type': string;
   'Access-Control-Allow-Origin': string;
   'Cache-Control': string;
-  Pragma: string;
 };
 
 export type Options = {

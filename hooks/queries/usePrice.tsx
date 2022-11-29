@@ -13,7 +13,7 @@ const usePrice = () => {
   const { add, remove } = useContext(LoadingContext);
   const { data, isLoading, ...query } = useQuery<Data>(['price'], () =>
     get(
-      ' https://www.lanacion.com.ar/pf/api/v3/content/fetch/dolarSource?query=undefined&d=1069&_website=la-nacion-ar',
+      ' https://www.lanacion.com.ar/pf/api/v3/content/fetch/dolarSource',
     ).then((response) => response.data),
   );
 

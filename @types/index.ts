@@ -35,3 +35,16 @@ export type Options = {
   headers?: object;
   params?: object;
 };
+
+export type Trade = {
+  aumento: boolean;
+  compra: string;
+  fecha: string;
+  fuente: string;
+  source: string;
+  sourceName: string;
+  title: string;
+  titleMobile: string;
+  variacion: string;
+  venta: string;
+};

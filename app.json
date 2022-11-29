@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Dólar hoy",
-    "slug": "Dólar hoy",
+    "slug": "dolar-hoy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

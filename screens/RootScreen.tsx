@@ -16,20 +16,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   priceTitle: {
-    fontSize: 20,
+    fontSize: 25,
   },
   price: {
     marginVertical: 5,
-    fontSize: 15,
+    fontSize: 20,
   },
   title: {
     marginVertical: 20,
-    fontSize: 20,
+    fontSize: 30,
     width: '100%',
     textAlign: 'center',
   },
   section: {
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -1,4 +1,4 @@
-import { createContext, useState, ReactElement } from 'react';
+import { createContext, ReactElement, useMemo, useReducer } from 'react';
 
 type Context = {
   loading: string[];
@@ -6,6 +6,10 @@ type Context = {
   remove: (path: string) => void;
 };
 
+type Action = {
+  type: 'ADD' | 'REMOVE';
+  path: string;
+};
 export const LoadingContext = createContext({} as Context);
 
 export default function LoadingProvider({
@@ -13,27 +17,31 @@ export default function LoadingProvider({
 }: {
   children: ReactElement;
 }) {
-  const [value, setValue] = useState<string[]>([]);
-
-  const addPaths = (path: string) => {
-    const exist = value.find((ele) => ele === path);
-    if (!exist) {
-      setValue([...value, path]);
-    }
-  };
-
-  const removePaths = (path: string) => {
-    if (value.includes(path)) {
-      setValue((newValue) => newValue.filter((ele) => ele !== path));
-    }
-  };
-
-  // eslint-disable-next-line react/jsx-no-constructed-context-values
-  const providedContext = {
-    loading: value,
-    add: addPaths,
-    remove: removePaths,
-  };
+  const [state, dispatch] = useReducer(
+    (prevState: string[], action: Action) => {
+      switch (action.type) {
+        case 'ADD':
+          return [...prevState, action.path];
+        case 'REMOVE':
+          return prevState.filter((ele) => ele !== action.path);
+        default:
+          return [...prevState];
+      }
+    },
+    [],
+  );
+  const providedContext = useMemo(
+    () => ({
+      loading: state,
+      add: (path: string) => {
+        dispatch({ type: 'ADD', path });
+      },
+      remove: (path: string) => {
+        dispatch({ type: 'REMOVE', path });
+      },
+    }),
+    [state],
+  );
 
   return (
     <LoadingContext.Provider value={providedContext}>

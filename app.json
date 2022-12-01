@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Dólar hoy",
+    "name": "Dolar hoy",
     "slug": "dolar-hoy",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -16,9 +16,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.mauriciogallegoa.dolarhoy",

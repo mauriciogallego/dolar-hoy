@@ -1,3 +1,4 @@
+import SharedGroupPreferences from 'react-native-shared-group-preferences';
 import { StyleSheet, FlatList } from 'react-native';
 import { FC } from 'react';
 import View from '../components/view/View';
@@ -7,6 +8,8 @@ import usePrice from '../hooks/queries/usePrice';
 import SafeAreaView from '../components/safe-area-view/SafeAreaView';
 import Separator from '../components/separator/Separator';
 import { Trade } from '../@types';
+
+const appGroupIdentifier = 'group.dolar';
 
 const styles = StyleSheet.create({
   container: {
@@ -70,6 +73,15 @@ const Item = ({ item }: { item: Trade }) => (
 );
 
 const RootScreen: FC<NotificationStackScreenProps<'Root'>> = () => {
+  const update = async () => {
+    await SharedGroupPreferences.setItem(
+      'savedData', // this is a key to pull from later in Swift
+      'prueba',
+      appGroupIdentifier,
+    );
+  };
+
+  update();
   const { data, refetch, isRefetching } = usePrice();
   if (data) {
     return (

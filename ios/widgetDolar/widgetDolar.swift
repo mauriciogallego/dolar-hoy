@@ -8,14 +8,23 @@
 import WidgetKit
 import SwiftUI
 
+class Prices {
+  let name: String
+  let price: String
+  
+  init(name: String, price: String){
+    self.name = name
+    self.price = price
+  }
+}
 
 struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), displayText: "Placeholder")
+    func placeholder(in context: Context) -> InfoEntry {
+      InfoEntry(date: Date(), prices: [])
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(),displayText: "Data goes here")
+    func getSnapshot(in context: Context, completion: @escaping (InfoEntry) -> ()) {
+        let entry = InfoEntry(date: Date(),prices: [])
         completion(entry)
     }
 
@@ -23,68 +32,63 @@ struct Provider: TimelineProvider {
       var displayText: String
     }
   
-  func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
-      let entryDate = Date()
-      
-      let userDefaults = UserDefaults.init(suiteName: "group.dolar")
-      if userDefaults != nil {
-          if let savedData = userDefaults!.value(forKey: "savedData") as? String {
-          let decoder = JSONDecoder()
-          let data = savedData.data(using: .utf8)
-          
-          if let parsedData = try? decoder.decode(WidgetData.self, from: data!) {
-              let nextRefresh = Calendar.current.date(byAdding: .minute, value: 5, to: entryDate)!
-              let entry = SimpleEntry(date: nextRefresh, displayText: parsedData.displayText)
-              let timeline = Timeline(entries: [entry], policy: .atEnd)
-              
-              completion(timeline)
-          } else {
-              print("Could not parse data")
-          }
-          
-          } else {
-              let nextRefresh = Calendar.current.date(byAdding: .minute, value: 5, to: entryDate)!
-              let entry = SimpleEntry(date: nextRefresh, displayText: "No data set")
-              let timeline = Timeline(entries: [entry], policy: .atEnd)
-              
-              completion(timeline)
-          }
-      }
+  func getTimeline(in context: Context, completion: @escaping (Timeline<InfoEntry>) -> Void) {
+    
+    var entries: [InfoEntry] = []
+    
+    completion(Timeline(entries: entries, policy: .atEnd))
   }
 }
 
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let displayText: String
+struct InfoEntry: TimelineEntry {
+  let date: Date
+  var prices: [Prices]
 }
 
 struct widgetDolarEntryView : View {
-    var entry: Provider.Entry
+  var primaryColor = Color(red: 7/255, green: 154/255, blue: 125/255)
+  var entry: Provider.Entry
   
     var body: some View {
       VStack {
+          HStack{
+            Text("Oficial")
+              .foregroundColor(primaryColor)
+              .bold()
+              .font(.system(size: 19))
+            Spacer()
+            Text("315")
+              .foregroundColor(.black)
+              .bold()
+              .font(.system(size: 14))
+          }.padding(.horizontal)
+        Divider()
+        Spacer()
         HStack{
-          Text(entry.displayText)
-            .foregroundColor(Color.green)
+          Text("Blue")
+            .foregroundColor(primaryColor)
+            .bold()
+            .font(.system(size: 19))
           Spacer()
-          Text(entry.displayText)
-            .foregroundColor(Color.green)
-        }.padding()
+          Text("300")
+            .foregroundColor(.black)
+            .bold()
+            .font(.system(size: 14))
+        }.padding(.horizontal)
+        Divider()
+        Spacer()
         HStack{
-          Text(entry.displayText)
-            .foregroundColor(Color.green)
+          Text("310")
+            .foregroundColor(primaryColor)
+            .bold()
+            .font(.system(size: 19))
           Spacer()
-          Text(entry.displayText)
-            .foregroundColor(Color.green)
-        }.padding()
-        HStack{
-          Text(entry.displayText)
-            .foregroundColor(Color.green)
-          Spacer()
-          Text(entry.displayText)
-            .foregroundColor(Color.green)
-        }.padding()
-      }
+          Text("310")
+            .foregroundColor(.black)
+            .bold()
+            .font(.system(size: 14))
+        }.padding(.horizontal)
+      }.padding(.vertical, 20)
     }
 }
 
@@ -95,14 +99,14 @@ struct widgetDolar: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             widgetDolarEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Dolar hoy")
+        .supportedFamilies([.systemSmall])
     }
 }
 
 struct widgetDolar_Previews: PreviewProvider {
     static var previews: some View {
-        widgetDolarEntryView(entry: SimpleEntry(date: Date(), displayText: "algo"))
+      widgetDolarEntryView(entry: InfoEntry(date: Date(), prices: []))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

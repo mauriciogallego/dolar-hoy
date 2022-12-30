@@ -1,0 +1,37 @@
+[
+  {
+    "aumento": true,
+    "compra": "166,75",
+    "fecha": "2022-12-02T21:51:00",
+    "fuente": "InvertirOnline",
+    "source": "https://api-contenidos.lanacion.com.ar/json/V3/economia/cotizacion/DBNA",
+    "sourceName": "dbna",
+    "title": "Dólar hoy",
+    "titleMobile": "Dólar hoy",
+    "variacion": "+0,3",
+    "venta": "174,75"
+  },
+  {
+    "aumento": false,
+    "compra": "308,00",
+    "fecha": "2022-12-02T16:03:00",
+    "fuente": "InvertirOnline",
+    "source": "https://api-contenidos.lanacion.com.ar/json/V3/economia/cotizacionblue/DBLUE",
+    "sourceName": "dblue",
+    "title": "Dólar blue",
+    "titleMobile": "Dólar blue",
+    "variacion": "-0,32",
+    "venta": "312,00"
+  },
+  {
+    "compra": "326,40",
+    "fecha": "2022-12-02T16:50:00",
+    "fuente": "InvertirOnline",
+    "source": "https://api-contenidos.lanacion.com.ar/json/V3/economia/cotizacionblue/DCCL",
+    "sourceName": "dccl",
+    "title": "Dólar CCL",
+    "titleMobile": "Dólar CCL",
+    "variacion": "0,80",
+    "venta": "326,40"
+  }
+]

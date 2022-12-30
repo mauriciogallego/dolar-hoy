@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 const Item = ({ item }: { item: Trade }) => (
   <View style={styles.section}>
     <Text font="regular" style={styles.priceTitle}>
-      {item.title === 'Dólar hoy' ? 'Dólar oficial' : item.title}
+      {item.titleMobile}
     </Text>
     <View style={styles.item}>
       <View style={styles.section}>
@@ -84,6 +84,7 @@ const RootScreen: FC<NotificationStackScreenProps<'Root'>> = () => {
   update();
   const { data, refetch, isRefetching } = usePrice();
   if (data) {
+    console.log(data.data);
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <View>
@@ -96,7 +97,7 @@ const RootScreen: FC<NotificationStackScreenProps<'Root'>> = () => {
           <FlatList
             data={data.data}
             renderItem={({ item }) => <Item item={item} />}
-            keyExtractor={(item, index) => `${item.title.toString()} ${index}`}
+            keyExtractor={(item, index) => `string${index}`}
             onRefresh={refetch}
             refreshing={isRefetching}
             onEndReachedThreshold={0}
